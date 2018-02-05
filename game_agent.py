@@ -400,7 +400,7 @@ class AlphaBetaPlayer(IsolationPlayer):
                 each helper function or else your agent will timeout during
                 testing.
         """
-        # TODO: finish this function!
+        # function implementaion
         legal_moves = game.get_legal_moves()
         if not legal_moves:
             return (-1, -1)
@@ -409,11 +409,13 @@ class AlphaBetaPlayer(IsolationPlayer):
         for lm in legal_moves:
             self.game_timer()
             next_move = game.forecast_move(lm)
-            # computer starts
+            
             score = self.min_value(next_move, depth - 1, alpha, beta)
+            
             if score > alpha:
                 alpha = score
                 self.best_current_move = lm
+        
         return self.best_current_move
     
     def max_value(self, game, depth, alpha, beta):
@@ -428,6 +430,7 @@ class AlphaBetaPlayer(IsolationPlayer):
                 alpha = score
                 if alpha >= beta:
                    break
+        
         return alpha
 
     def min_value(self, game, depth, alpha, beta):
@@ -442,6 +445,7 @@ class AlphaBetaPlayer(IsolationPlayer):
                 beta = score 
                 if beta <= alpha:
                    break       
+        
         return beta
 
 
